@@ -20,7 +20,24 @@ Multi-stage development
 
 # Documentation    
 
+## Templates
+
 DoT template engine documentation: http://olado.github.io/doT/index.html
+
+## CSS preprocessors
+
+You can use LESS and SCSS preprocessors. Simply add a file with the extension .less or .scss to the 
+workspace directory, and then add tag:
+```
+<link rel="stylesheet" href="your-file.css"> 
+```
+to the one.dot or multi.dot file. Note the extension used in the href attribute, it must be .css. 
+The server will look for the .less file first, then .scss, and finally .css.
+
+These files do not have access to variables related to letters (for now), so you can only use 
+CSS rules not related to the game logic itself.
+
+## Variables
 
 Variables for use in single stage:
 
