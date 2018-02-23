@@ -2,6 +2,8 @@ const path = require('path');
 const portFinder = require('portfinder');
 const express = require('express');
 const engine = require('express-dot-engine');
+const lessMiddleware = require('less-middleware');
+const scssMiddleware = require('node-sass-middleware');
 const { words: wordsArray, alphabet } = require('./workspace/data');
 
 const PORT = +process.env.PORT || 3000;
@@ -27,6 +29,8 @@ app.engine('dot', engine.__express);
 app.set('views', WORKSPACE);
 app.set('view engine', 'dot');
 
+app.use(lessMiddleware(WORKSPACE, {force: true}));
+app.use(scssMiddleware({src: WORKSPACE}));
 app.use(express.static(WORKSPACE));
 
 app.get('/favicon.ico', (req, res) => res.status(204).send());

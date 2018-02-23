@@ -6,6 +6,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Hangman challenge</title>
   <style>
+    h1 span { display: none; }
     .good { color: green; }
     .bad { color: red; }
 
@@ -17,9 +18,15 @@
     .letter-{{=letter}} { color: red; }
     {{~}}
   </style>
+  <link rel="stylesheet" href="./styles-less.css"/>
+  <link rel="stylesheet" href="./styles-scss.css"/>
 </head>
 <body>
   <div>
+    <h1>
+      <span class="less">LESS is working</span><br/>
+      <span class="scss">SCSS is working</span><br/>
+    </h1>
     <p>Alphabet:
       {{~it.alphabet :letter:letterIndex}}
       <span class="letter-{{=letter}}">{{=letter}}</span>

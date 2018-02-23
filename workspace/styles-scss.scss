@@ -1,0 +1,10 @@
+$COLOR: green;
+
+h1 {
+  span {
+    &.scss {
+      display: inline;
+      color: $COLOR;
+    }
+  }
+}
