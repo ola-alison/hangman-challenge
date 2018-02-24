@@ -1,3 +1,5 @@
+@import "_vars.less";
+
 @COLOR: green;
 
 h1 {
@@ -8,3 +10,17 @@ h1 {
     }
   }
 }
+
+.generateColors(@letters; @color; @index: 1) when (@index <= length(@letters)) {
+
+  @letter: extract(@letters, @index);
+  .letter-@{letter} {
+    background-color: @color;
+  }
+
+  // Do next loop
+  .generateColors(@letters; @color; @index+1);
+}
+
+.generateColors(@lettersInWord; #eee);
+.generateColors(@lettersNotInWord; #111);
