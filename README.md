@@ -2,7 +2,9 @@
 
 Install node.js: https://nodejs.org/en/
 
-Clone repo
+Fork repo on github page
+
+Clone repo (replace gmichlicki-neducatio with your username)
 
     git clone git@github.com:gmichlicki-neducatio/hangman-challenge.git
 
@@ -33,8 +35,8 @@ workspace directory, and then add tag:
 ```
 to the one.dot or multi.dot file. Note the extension used in the href attribute, it must be .css. 
 The server will look for the .less file first, then .scss, and finally .css.
-2 files with variables for each preprocessor language are also created: `_vars.less` and 
-`_vars.scss`.     
+2 files with variables are also created each time the user visits website. 
+One for each preprocessor language: `_vars.less` and `_vars.scss`.     
 Variables are described in the next section of this document
 
 ## Variables
