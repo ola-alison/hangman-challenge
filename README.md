@@ -53,7 +53,7 @@ Variables are described in the next section of this document
 8. **it.lettersNotInWord** - letters not used in the guessed word 
 9. **it.numberOfLettersNotInWord** - number of unique letters not used in the guessed word
 
-Inside .less files there are corresponding variables created in _vars.less file:
+Inside .less files there are corresponding variables created in `_vars.less` file:
 
 1. **@alphabet**
 2. **@numberOfWords**
@@ -65,7 +65,7 @@ Inside .less files there are corresponding variables created in _vars.less file:
 8. **@lettersNotInWord** 
 9. **@numberOfLettersNotInWord**
 
-Inside .scss files there are corresponding variables created in _vars.scss file:
+Inside .scss files there are corresponding variables created in `_vars.scss` file:
 
 1. **$alphabet**
 2. **$numberOfWords**
@@ -94,7 +94,7 @@ Inside .scss files there are corresponding variables created in _vars.scss file:
 
 where 'n' is a number between 0-4, eg. it.words[4].word
 
-Inside .less files there are corresponding variables created in _vars.less file:
+Inside .less files there are corresponding variables created in `_vars.less` file:
 
 1. **@alphabet**
 2. **@numberOfWords**
@@ -108,7 +108,7 @@ Inside .less files there are corresponding variables created in _vars.less file:
 
 Points 3-9 are repeated for each subsequent word with a prefix replaced to its number
 
-Inside .scss files there are corresponding variables created in _vars.scss file:
+Inside .scss files there are corresponding variables created in `_vars.scss` file:
 
 1. **$alphabet**
 2. **$numberOfWords**
