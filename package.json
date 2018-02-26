@@ -4,8 +4,8 @@
   "description": "Template package for Hangman challenge",
   "main": "server.js",
   "scripts": {
-    "start": "node-env NUM_WORDS=1 nodemon",
-    "multi": "node-env NUM_WORDS=5 nodemon"
+    "start": "cross-env NUM_WORDS=1 nodemon",
+    "multi": "cross-env NUM_WORDS=5 nodemon"
   },
   "author": "Grzegorz Michlicki <gmichlicki@n-educatio.pl>",
   "license": "MIT",
