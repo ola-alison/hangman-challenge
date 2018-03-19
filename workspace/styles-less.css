@@ -1,23 +1,10 @@
 @import url('http://fonts.googleapis.com/css?family=Galindo&subset=latin,latin-ext');
-@import "_vars.less";
-
-@colorPurple: #906090;
-
-.size(@size) {
-  width: @size;
-  height: @size;
-  display: inline-block;
-}
-
-// -----------------------------
-
 body {
-  color: @colorPurple;
+  color: #906090;
   font-family: 'Galindo', sans-serif;
   font-size: 1.2em;
   text-align: center;
 }
-
 .hangman {
   position: absolute;
   top: 0;
@@ -25,18 +12,15 @@ body {
   left: 0;
   right: 0;
   padding: 100px 40px;
-  background: url(dots2.png), url(dots3.png), linear-gradient(to bottom, #2f0068 0%,#26003a 44%,#750073 100%);
+  background: url(dots2.png), url(dots3.png), linear-gradient(to bottom, #2f0068 0%, #26003a 44%, #750073 100%);
   background-repeat: no-repeat;
   background-position: -50% -20%, 100% 100%;
   background-size: 50%, 50%, cover;
-
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-around;
   align-items: center;
 }
-
-
 .screen {
   text-align: left;
   position: relative;
@@ -44,45 +28,44 @@ body {
   width: 100%;
   margin-bottom: 10px;
   max-width: 900px;
-
   border: 5px solid #000;
   border-radius: 10px;
   background-color: #67C3FC;
 }
-
 .unicorn-container {
   position: relative;
   display: inline-block;
-  &:before {
-    content: "+";
-    .size(30px);
-    line-height: 30px;
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-    color: #451e23;
-    background-color: #fff;
-    border-radius: 50%;
-    position: absolute;
-    right: 40px;
-    top: 85px;
-    opacity: 0;
-  }
-
-  &:after {
-    content: "";
-    .size(70px);
-    background-image: url(heart.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: absolute;
-    right: -120px;
-    top: 100px;
-    opacity: 0;
-  }
 }
-
-// ---------------------- ATTEMPTS ----
+.unicorn-container:before {
+  content: "+";
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  line-height: 30px;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  color: #451e23;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  right: 40px;
+  top: 85px;
+  opacity: 0;
+}
+.unicorn-container:after {
+  content: "";
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  background-image: url(heart.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: -120px;
+  top: 100px;
+  opacity: 0;
+}
 @keyframes life {
   0% {
     opacity: 1;
@@ -99,7 +82,7 @@ body {
     transform: scale(0);
   }
   36% {
-    background-image: url("poison.png");
+    background-image: url("poison2.png");
     transform: scale(0);
   }
   50% {
@@ -110,31 +93,32 @@ body {
   }
   100% {
     opacity: 0;
-    background-image: url("poison.png");
+    background-image: url("poison2.png");
     top: 200px;
     left: -150px;
     transform: scale(0.8);
   }
 }
-
 .attempts {
   display: inline-block;
   position: absolute;
   right: 0;
   bottom: 100%;
   animation: disappear 1.5s ease-in forwards;
-
-  &:before {
-    content: "";
-    .size(70px);
-    background-image: url(unicorn-head.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
 }
-
+.attempts:before {
+  content: "";
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  background-image: url(unicorn-head.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .life {
-  .size(50px);
+  width: 50px;
+  height: 50px;
+  display: inline-block;
   position: relative;
   top: 0;
   left: 0;
@@ -143,106 +127,94 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
 }
-
-
 .game {
   border: 5px solid #000;
   border-radius: 10px;
-  background-color: rgba(256, 256, 256, 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
   width: 100%;
   max-width: 900px;
   padding: 20px;
 }
-
-// ---------------------- WORD ----
-
 @keyframes starEnter {
   0% {
     transform: rotate(-230deg);
     opacity: 0;
   }
   100% {
-    transform:rotate(0deg);
+    transform: rotate(0deg);
     opacity: 1;
   }
 }
-
 .game-word {
   font-size: 45px;
   display: inline-block;
   padding: 15px 20px;
-
-  .letter {
-    .size(50px);
-    text-align: center;
-    position: relative;
-
-    &:before {
-      .size(50px);
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: url(star.png);
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-      background-size: contain;
-      opacity: 0;
-      animation: starEnter 0.75s ease-out forwards;
-    }
-  }
 }
-
-// --------------- hidden CHECKBOXES ----
+.game-word .letter {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+}
+.game-word .letter:before {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url(star.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+  opacity: 0;
+  animation: starEnter 0.75s ease-out forwards;
+}
 .letter-checkbox,
 .letter-checkbox + span {
   visibility: hidden;
   position: absolute;
 }
-
-// ---------------------- KEYBOARD ----
 .keyboard {
   max-width: 800px;
   margin: 0 auto;
 }
-
 .letter-key {
-  .size(30px);
+  width: 30px;
+  height: 30px;
+  display: inline-block;
   border: 5px solid #000;
   border-radius: 10px;
   background-color: #fff;
   color: #000;
-  box-shadow: inset 0px -5px 0px 0px @colorPurple;
+  box-shadow: inset 0px -5px 0px 0px #906090;
   margin: 5px;
   padding: 5px;
   text-align: center;
-
-  &:active {
-    box-shadow: inset 0px -2px 0px 0px @colorPurple;
-    transform: translateY(3px);
-  }
 }
-
+.letter-key:active {
+  box-shadow: inset 0px -2px 0px 0px #906090;
+  transform: translateY(3px);
+}
 .new-game {
   display: inline-block;
   border: 5px solid #000;
   border-radius: 10px;
   background-color: #fff;
   color: #000;
-  box-shadow: inset 0px -5px 0px 0px @colorPurple;
+  box-shadow: inset 0px -5px 0px 0px #906090;
   height: 30px;
   margin: 5px;
   padding: 5px;
   text-align: center;
   text-decoration: none;
-
-  &:active {
-    box-shadow: inset 0px -2px 0px 0px @colorPurple;
-    transform: translateY(3px);
-  }
 }
-
-// ---------------------- MISSED LETTER----
+.new-game:active {
+  box-shadow: inset 0px -2px 0px 0px #906090;
+  transform: translateY(3px);
+}
 .letter-missed:checked ~ .screen .attempts .life-1,
 .letter-missed:checked ~ .letter-missed:checked ~ .screen .attempts .life-2,
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .attempts .life-3,
@@ -251,8 +223,7 @@ body {
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .attempts .life-6 {
   animation: life 2s ease-in forwards;
 }
-
-.letter-missed:checked ~ .screen  {
+.letter-missed:checked ~ .screen {
   background-color: #66F9E6;
   transition: background-color 2s ease-out;
   transition-delay: 1s;
@@ -281,41 +252,31 @@ body {
   background-color: #F76565;
   transition: background-color 2s ease-out;
   transition-delay: 1s;
-
-  .unicorn-container:before {
-    opacity: 1;
-    transition: opacity 0.1s;
-    transition-delay: 1s;
-  }
+}
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-container:before {
+  opacity: 1;
+  transition: opacity 0.1s;
+  transition-delay: 1s;
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .attempts:before {
   opacity: 0;
   transition: opacity 1s ease-in;
   transition-delay: 1s;
 }
-
-// ---------------------- THE END ----
-
 .letter-checkbox ~ .screen .end-win,
 .letter-checkbox ~ .screen .end-fail {
   opacity: 0;
   position: absolute;
 }
-
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked
-~ .game .keyboard .letter-key {
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .game .keyboard .letter-key {
   pointer-events: none;
   opacity: 0.5;
 }
-
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked
-~ .screen .end-fail {
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .end-fail {
   opacity: 1;
   transition: opacity 0.5s ease-in;
   transition-delay: 1s;
 }
-
-
 @keyframes fade {
   0% {
     opacity: 1;
@@ -324,16 +285,14 @@ body {
     opacity: 0;
   }
 }
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked
-~ .game .game-word .letter {
-  color: rgba(256, 256, 256, 0.2);
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .game .game-word .letter {
+  color: rgba(255, 255, 255, 0.2);
   transition: color 0.5s ease-in;
   transition-delay: 0.5s;
-  &:before {
-    animation: fade 0.5s forwards ease-in;
-  }
 }
-
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .game .game-word .letter:before {
+  animation: fade 0.5s forwards ease-in;
+}
 .end {
   position: absolute;
   color: #750073;

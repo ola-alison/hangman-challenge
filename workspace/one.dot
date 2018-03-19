@@ -2,63 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Hangman challenge</title>
-  <style>
-    h1 span { display: none; }
-    .good { color: green; }
-    .bad { color: red; }
+  <link rel="stylesheet" type="text/css" href="/styles.css" />
+  <link rel="stylesheet" href="./styles-less.css"/>
 
+  <style>
     {{~it.lettersInWord :letter}}
-    .letter-{{=letter}} { color: green; }
+    .letter-checkbox.letter-{{=letter}} ~ .game .game-word .letter-{{=letter}}  {
+      color: transparent;
+    }
+    .letter-checkbox.letter-{{=letter}}:checked ~ .game .game-word .letter-{{=letter}} {
+      color: #fff !important;
+      transition: color 0.5s ease-in;
+    }
+    .letter-checkbox.letter-{{=letter}}:checked ~ .game .game-word .letter-{{=letter}}:before {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      transition: width 0.5s, height 0.5s, opacity 0.5s ease-in;
+    }
+    .letter-checkbox.letter-{{=letter}}:checked ~ .game .keyboard .letter-{{=letter}} {
+      pointer-events: none;
+      opacity: 0.5;
+    }
     {{~}}
+
+    {{~it.lettersInWord :letter:letterIndex}}
+      {{?letterIndex < it.numberOfLettersInWord}}.letter-correct:checked ~ {{?}}
+    {{~}}
+    .screen {
+      background-color: #67C3FC;
+      transition: background-color 1.5s ease-out;
+    }
+
+    {{~it.lettersInWord :letter:letterIndex}}
+      {{?letterIndex < it.numberOfLettersInWord}}.letter-correct:checked ~ {{?}}
+    {{~}}
+    .screen .end-win {
+      opacity: 1;
+      transition: opacity 0.5s ease-in;
+    }
+    {{~it.lettersInWord :letter:letterIndex}}
+      {{?letterIndex < it.numberOfLettersInWord}}.letter-correct:checked ~ {{?}}
+    {{~}}
+    .screen .unicorn-container:after {
+      opacity: 1;
+      transition: opacity 0.5s ease-in;
+      transition-delay: 0.2s;
+    }
+
+    {{~it.lettersInWord :letter:letterIndex}}
+      {{?letterIndex < it.numberOfLettersInWord}}.letter-correct:checked ~ {{?}}
+    {{~}}
+    .game .keyboard .letter-key {
+      pointer-events: none;
+      opacity: 0.5;
+      transition: opacity 0.1s ease-in;
+    }
 
     {{~it.lettersNotInWord :letter}}
-    .letter-{{=letter}} { color: red; }
+    .letter-checkbox.letter-{{=letter}}:checked ~ .game .keyboard .letter-{{=letter}} {
+      pointer-events: none;
+      opacity: 0.5;
+      transition: opacity 0.1s ease-in;
+    }
     {{~}}
   </style>
-  <link rel="stylesheet" href="./styles-less.css"/>
-  <link rel="stylesheet" href="./styles-scss.css"/>
 </head>
+
 <body>
-  <div>
-    <h1>
-      <span class="less">LESS is working</span><br/>
-      <span class="scss">SCSS is working</span><br/>
-    </h1>
-    <p>Alphabet:
-      {{~it.alphabet :letter:letterIndex}}
-      <span class="letter-{{=letter}}">{{=letter}}</span>
-      {{~}}
-    </p>
-    <p>Alphabet:
-      {{~it.alphabet :letter:letterIndex}}
-      <span class="{{?it.lettersInWord.includes(letter)}}good{{??}}bad{{?}}">{{=letter}}</span>
-      {{~}}
-    </p>
+  <div class="hangman">
 
-    <p>Number of words: {{=it.numWords}}</p>
+      {{~it.lettersInWord :letter:letterIndex}}
+        <input type="checkbox" id="{{=letter}}" class="letter-checkbox letter-correct letter-{{=letter}}" > <span>{{=letter}}{{?letterIndex < it.numberOfLettersInWord - 1}},{{?}} </span>
+      {{~}}
+      {{~it.lettersNotInWord :letter:letterIndex}}
+        <input type="checkbox" id="{{=letter}}" class="letter-checkbox letter-missed letter-{{=letter}}" ><span>{{=letter}}{{?letterIndex < it.numberOfLettersNotInWord - 1}},{{?}}</span>
+      {{~}}
 
-    <p>Word <span>{{=it.word}}</span><p>
-    <p>Number of letters: {{=it.numberOfLetters}}</p>
-    <p>Letter by letter in word:
-    {{~it.word :letter:letterIndex}}
-      <span>{{=letter}}{{?letterIndex < it.numberOfLetters - 1}},{{?}} </span>
-    {{~}}
-    </p>
-    <p>Number of unique letters used in word: {{=it.numberOfLettersInWord}}</p>
-    <p>Unique letters used in word:
-    {{~it.lettersInWord :letter:letterIndex}}
-      <span>{{=letter}}{{?letterIndex < it.numberOfLettersInWord - 1}},{{?}} </span>
-    {{~}}
-    </p>
-    <p>Number of letters not used in word: {{=it.numberOfLettersNotInWord}}</p>
-    <p>Letters not used in word:
-    {{~it.lettersNotInWord :letter:letterIndex}}
-      <span>{{=letter}}{{?letterIndex < it.numberOfLettersNotInWord - 1}},{{?}}</span>
-    {{~}}
-    </p>
+      <div class="game">
+
+        <div class="game-word">
+          {{~it.word :letter:letterIndex}}
+            <span class="letter letter-{{=letter}}">{{=letter}}{{?letterIndex < it.numberOfLetters - 1}}{{?}}</span>
+          {{~}}
+        </div>
+
+        <div class="keyboard">
+          {{~it.alphabet :letter:letterIndex}}
+          <label for="{{=letter}}" class="{{?it.lettersInWord.includes(letter)}}good{{??}}bad{{?}} letter-key letter-{{=letter}}">{{=letter}}</label>
+          {{~}}
+          <a href="." class="new-game">New game</a>
+        </div>
+
+      </div>
+
+      <div class="screen">
+
+        <div class="attempts">
+          <span class="life life-6"></span>
+          <span class="life life-5"></span>
+          <span class="life life-4"></span>
+          <span class="life life-3"></span>
+          <span class="life life-2"></span>
+          <span class="life life-1"></span>
+        </div>
+
+        <div class="end end-win">You win! Your unicorn loves you.</div>
+        <div class="end end-fail">You lose... You're a unicorn killer.</div>
+
+        <div class="unicorn-container">
+          <img class="unicorn" src="unicorn.png" />
+        </div>
+
+      </div>
+
   </div>
 </body>
 </html>

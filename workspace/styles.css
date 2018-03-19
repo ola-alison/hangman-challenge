@@ -1,0 +1,18 @@
+/* @keyframes test {
+  0% {
+    background: #fff;
+  }
+  100% {
+    background: blue;
+  }
+}
+
+
+.letter-key {
+}
+
+.letter-key:focus {
+  background: #fff;
+  animation: test 1 forwards;
+  outline: 0;
+} */
