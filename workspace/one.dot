@@ -93,7 +93,7 @@
           {{~it.alphabet :letter:letterIndex}}
           <label for="{{=letter}}" class="{{?it.lettersInWord.includes(letter)}}good{{??}}bad{{?}} letter-key letter-{{=letter}}">{{=letter}}</label>
           {{~}}
-          <a href="." class="new-game">New game</a>
+          <a href="." class="new-game">New game</a>>
         </div>
 
       </div>
@@ -113,7 +113,10 @@
         <div class="end end-fail">You lose... You're a unicorn killer.</div>
 
         <div class="unicorn-container">
-          <img class="unicorn" src="unicorn.png" />
+          <img class="unicorn unicorn-happy" src="unicorn-happy.png" />
+          <img class="unicorn unicorn-plain" src="unicorn.png" />
+          <img class="unicorn unicorn-sad" src="unicorn-sad.png" />
+          <img class="unicorn unicorn-tear" src="unicorn-tear.png" />
         </div>
 
       </div>

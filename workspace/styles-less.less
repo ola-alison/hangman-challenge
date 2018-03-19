@@ -48,11 +48,28 @@ body {
   border: 5px solid #000;
   border-radius: 10px;
   background-color: #67C3FC;
+
+  background-image: url(grass.png);
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  background-size: contain;
 }
 
 .unicorn-container {
   position: relative;
   display: inline-block;
+  max-width: 50%;
+
+  .unicorn {
+    width: 100%;
+    max-width: 350px;
+    &.unicorn-plain,
+    &.unicorn-sad,
+    &.unicorn-tear {
+      display: none;
+    }
+  }
+
   &:before {
     content: "+";
     .size(30px);
@@ -65,7 +82,7 @@ body {
     border-radius: 50%;
     position: absolute;
     right: 40px;
-    top: 85px;
+    top: 80px;
     opacity: 0;
   }
 
@@ -223,7 +240,8 @@ body {
   }
 }
 
-.new-game {
+.new-game,
+.surprise {
   display: inline-block;
   border: 5px solid #000;
   border-radius: 10px;
@@ -261,31 +279,83 @@ body {
   background-color: #66F99A;
   transition: background-color 2s ease-out;
   transition-delay: 1s;
+
+  .unicorn-plain {
+    display: inline-block;
+  }
+  .unicorn-happy,
+  .unicorn-sad,
+  .unicorn-tear {
+    display: none;
+  }
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen {
   background-color: #ABF765;
   transition: background-color 2s ease-out;
-  transition-delay: 1s;
+  transition-delay: 1s;  
+
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen {
   background-color: #F4F765;
   transition: background-color 2s ease-out;
   transition-delay: 1s;
+
+  .unicorn-sad {
+    display: inline-block;
+  }
+  .unicorn-happy,
+  .unicorn-plain,
+  .unicorn-tear  {
+    display: none;
+  }
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen {
   background-color: #F7AB65;
   transition: background-color 2s ease-out;
   transition-delay: 1s;
+
+  .unicorn-tear {
+    display: inline-block;
+  }
+  .unicorn-happy,
+  .unicorn-plain,
+  .unicorn-sad {
+    display: none;
+  }
+
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen {
   background-color: #F76565;
   transition: background-color 2s ease-out;
   transition-delay: 1s;
 
-  .unicorn-container:before {
-    opacity: 1;
-    transition: opacity 0.1s;
-    transition-delay: 1s;
+  @keyframes unicorn {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-160deg);
+    }
+  }
+
+  .unicorn-sad {
+    display: inline-block;
+  }
+  .unicorn-happy,
+  .unicorn-plain,
+  .unicorn-tear  {
+    display: none;
+  }
+
+  .unicorn-container {
+    animation: unicorn 0.5s linear forwards;
+    transform-origin: 55% 60%;
+
+    &:before {
+      opacity: 1;
+      transition: opacity 0.1s;
+      transition-delay: 0.5s;
+    }
   }
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .attempts:before {
