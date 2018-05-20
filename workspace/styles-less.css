@@ -1,84 +1,15 @@
 @import url('http://fonts.googleapis.com/css?family=Galindo&subset=latin,latin-ext');
-body {
-  color: #906090;
-  font-family: 'Galindo', sans-serif;
-  font-size: 1.2em;
-  text-align: center;
+@keyframes wind {
+  100% {
+    background-position: -1050px;
+  }
 }
-.hangman {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 100px 40px;
-  background: url(dots2.png), url(dots3.png), linear-gradient(to bottom, #2f0068 0%, #26003a 44%, #750073 100%);
-  background-repeat: no-repeat;
-  background-position: -50% -20%, 100% 100%;
-  background-size: 50%, 50%, cover;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: space-around;
-  align-items: center;
-}
-.screen {
-  text-align: left;
-  position: relative;
-  padding: 20px;
-  width: 100%;
-  margin-bottom: 10px;
-  max-width: 900px;
-  border: 5px solid #000;
-  border-radius: 10px;
-  background-color: #67C3FC;
-  background-image: url(grass.png);
-  background-repeat: no-repeat;
-  background-position: 50% 100%;
-  background-size: contain;
-}
-.unicorn-container {
-  position: relative;
-  display: inline-block;
-  max-width: 50%;
-}
-.unicorn-container .unicorn {
-  width: 100%;
-  max-width: 350px;
-}
-.unicorn-container .unicorn.unicorn-plain,
-.unicorn-container .unicorn.unicorn-sad,
-.unicorn-container .unicorn.unicorn-tear {
-  display: none;
-}
-.unicorn-container:before {
-  content: "+";
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  line-height: 30px;
-  font-size: 2em;
-  font-weight: bold;
-  text-align: center;
-  color: #451e23;
-  background-color: #fff;
-  border-radius: 50%;
-  position: absolute;
-  right: 40px;
-  top: 80px;
-  opacity: 0;
-}
-.unicorn-container:after {
-  content: "";
-  width: 70px;
-  height: 70px;
-  display: inline-block;
-  background-image: url(heart.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: absolute;
-  right: -120px;
-  top: 100px;
-  opacity: 0;
+@media screen and (max-width: 360px) {
+  @keyframes wind {
+    100% {
+      background-position: -690px;
+    }
+  }
 }
 @keyframes life {
   0% {
@@ -113,12 +44,217 @@ body {
     transform: scale(0.8);
   }
 }
-.attempts {
-  display: inline-block;
+@keyframes starEnter {
+  0% {
+    transform: rotate(-230deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+@keyframes corn {
+  0% {
+    transform: rotate(0deg);
+    transform-origin: 50% 100%;
+  }
+  60% {
+    transform: rotate(90deg);
+    transform-origin: 50% 100%;
+  }
+  80% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  99.5% {
+    transform: translateY(400px);
+  }
+  100% {
+    transform: translateY(-400px);
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+}
+@keyframes corn2 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes unicorn {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-160deg);
+  }
+}
+@media screen and (max-width: 350px) {
+  @keyframes unicorn {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-160deg);
+    }
+  }
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    background-position: 0px 0;
+  }
+  20% {
+    background-position: 20px 0;
+  }
+  40% {
+    background-position: 40px 0;
+  }
+  60% {
+    background-position: 60px 0;
+  }
+  80% {
+    background-position: 80px 0;
+  }
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: scale(1) translate(0, 0);
+  }
+  15%,
+  42%,
+  70%,
+  86% {
+    opacity: 0.75;
+  }
+  30%,
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2) translate(0, -150%);
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+html,
+body,
+div,
+p,
+span {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  box-sizing: border-box;
+}
+html {
+  font-size: 1.5vw;
+}
+body {
+  color: #906090;
+  font-family: 'Galindo', sans-serif;
+  text-align: center;
   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
   right: 0;
-  bottom: 100%;
-  animation: disappear 1.5s ease-in forwards;
+}
+.hangman-container {
+  background: url(dots2.png), url(dots3.png), linear-gradient(to bottom, #2f0068 0%, #26003a 44%, #750073 100%);
+  background-repeat: no-repeat;
+  background-position: -50% -20%, 100% 100%;
+  background-size: 50%, 50%, cover;
+  height: 100%;
+  width: 100%;
+}
+.hangman {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 1000px;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+.hangman > div {
+  margin: 0.3rem 0.5rem;
+}
+.screen {
+  border: 5px solid #000;
+  border-radius: 10px;
+  background-color: #67C3FC;
+  background-image: url(grass.png);
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  background-size: contain;
+  padding: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.unicorn-container {
+  width: 350px;
+  height: 262px;
+  background: url('unicorn-sprite.png') left center;
+  animation: wind 0.5s steps(3) infinite alternate;
+  position: relative;
+  z-index: 5;
+}
+.unicorn-container .eye {
+  width: 25px;
+  height: 26px;
+  background: url('eye-happy.png') left center;
+  background-size: 100%;
+  position: absolute;
+  top: 80px;
+  right: 35px;
+}
+.unicorn-container .corn {
+  width: 39px;
+  height: 75px;
+  background: url('corn.png') left center;
+  background-size: 100%;
+  position: absolute;
+  bottom: 187px;
+  right: 30px;
+}
+@media screen and (max-width: 360px) {
+  .unicorn-container {
+    width: 230px;
+    height: 172px;
+    background: url('unicorn-sprite-small.png') left center;
+  }
+  .unicorn-container .eye {
+    width: 20px;
+    height: 18px;
+    top: 52px;
+    right: 23px;
+  }
+  .unicorn-container .corn {
+    width: 25px;
+    height: 45px;
+    bottom: 125px;
+    right: 21px;
+  }
+}
+.attempts {
+  text-align: right;
+  margin-right: 1rem;
 }
 .attempts:before {
   content: "";
@@ -128,6 +264,13 @@ body {
   background-image: url(unicorn-head.png);
   background-size: contain;
   background-repeat: no-repeat;
+}
+@media screen and (max-width: 600px) {
+  .attempts:before {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+  }
 }
 .life {
   width: 50px;
@@ -141,39 +284,48 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
 }
+@media screen and (max-width: 600px) {
+  .life {
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+  }
+}
 .game {
   border: 5px solid #000;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.3);
-  width: 100%;
-  max-width: 900px;
-  padding: 20px;
-}
-@keyframes starEnter {
-  0% {
-    transform: rotate(-230deg);
-    opacity: 0;
-  }
-  100% {
-    transform: rotate(0deg);
-    opacity: 1;
-  }
 }
 .game-word {
-  font-size: 45px;
   display: inline-block;
-  padding: 15px 20px;
+  margin: 1rem;
+}
+@media screen and (max-width: 600px) {
+  .game-word {
+    font-size: 2.5rem;
+  }
 }
 .game-word .letter {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   display: inline-block;
+  font-size: 45px;
+  line-height: 45px;
   text-align: center;
   position: relative;
 }
+@media screen and (max-width: 600px) {
+  .game-word .letter {
+    width: 3rem;
+    height: 3rem;
+    display: inline-block;
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+}
 .game-word .letter:before {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   display: inline-block;
   content: '';
   position: absolute;
@@ -186,6 +338,13 @@ body {
   opacity: 0;
   animation: starEnter 0.75s ease-out forwards;
 }
+@media screen and (max-width: 600px) {
+  .game-word .letter:before {
+    width: 4rem;
+    height: 4rem;
+    display: inline-block;
+  }
+}
 .letter-checkbox,
 .letter-checkbox + span {
   visibility: hidden;
@@ -194,11 +353,18 @@ body {
 .keyboard {
   max-width: 800px;
   margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 .letter-key {
   width: 30px;
   height: 30px;
   display: inline-block;
+  line-height: 30px;
+  font-size: 25px;
   border: 5px solid #000;
   border-radius: 10px;
   background-color: #fff;
@@ -212,121 +378,259 @@ body {
   box-shadow: inset 0px -2px 0px 0px #906090;
   transform: translateY(3px);
 }
-.new-game,
-.surprise {
+@media screen and (max-width: 600px) {
+  .letter-key {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    line-height: 20px;
+    font-size: 2.5rem;
+    margin: 2px;
+  }
+}
+.new-game {
+  height: 30px;
+  line-height: 30px;
+  font-size: 25px;
   display: inline-block;
   border: 5px solid #000;
   border-radius: 10px;
   background-color: #fff;
   color: #000;
   box-shadow: inset 0px -5px 0px 0px #906090;
-  height: 30px;
   margin: 5px;
   padding: 5px;
   text-align: center;
   text-decoration: none;
 }
-.new-game:active,
-.surprise:active {
+.new-game:active {
   box-shadow: inset 0px -2px 0px 0px #906090;
   transform: translateY(3px);
 }
-.letter-missed:checked ~ .screen .attempts .life-1,
-.letter-missed:checked ~ .letter-missed:checked ~ .screen .attempts .life-2,
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .attempts .life-3,
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .attempts .life-4,
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .attempts .life-5,
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .attempts .life-6 {
+@media screen and (max-width: 600px) {
+  .new-game {
+    height: 20px;
+    line-height: 20px;
+    font-size: 2.5rem;
+    margin: 2px;
+  }
+}
+.letter-missed:checked ~ .screen ~ .attempts .life-1,
+.letter-missed:checked ~ .letter-missed:checked ~ .screen ~ .attempts .life-2,
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen ~ .attempts .life-3,
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen ~ .attempts .life-4,
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen ~ .attempts .life-5,
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen ~ .attempts .life-6 {
   animation: life 2s ease-in forwards;
 }
 .letter-missed:checked ~ .screen {
   background-color: #66F9E6;
-  transition: background-color 2s ease-out;
-  transition-delay: 1s;
+  transition: background-color 1s ease-out;
+  transition-delay: 0.5s;
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .screen {
   background-color: #66F99A;
-  transition: background-color 2s ease-out;
-  transition-delay: 1s;
+  transition: background-color 1s ease-out;
+  transition-delay: 0.5s;
 }
-.letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-plain {
-  display: inline-block;
-}
-.letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-happy,
-.letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-sad,
-.letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-tear {
-  display: none;
+.letter-missed:checked ~ .letter-missed:checked ~ .screen .eye {
+  background: url('eye-neutral.png') left center;
+  background-size: 100%;
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen {
   background-color: #ABF765;
-  transition: background-color 2s ease-out;
-  transition-delay: 1s;
+  transition: background-color 1s ease-out;
+  transition-delay: 0.5s;
+}
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .eye {
+  background: url('eye-sad.png') left center;
+  background-size: 100%;
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen {
   background-color: #F4F765;
-  transition: background-color 2s ease-out;
-  transition-delay: 1s;
+  transition: background-color 1s ease-out;
+  transition-delay: 0.5s;
 }
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-sad {
-  display: inline-block;
-}
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-happy,
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-plain,
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-tear {
-  display: none;
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .corn {
+  animation: corn 1.2s ease-in forwards;
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen {
   background-color: #F7AB65;
-  transition: background-color 2s ease-out;
-  transition-delay: 1s;
+  transition: background-color 1s ease-out;
+  transition-delay: 0.5s;
 }
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-tear {
-  display: inline-block;
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .tear {
+  width: 10px;
+  height: 13px;
+  position: absolute;
+  background: url(tear.png) left center;
+  right: 55px;
+  top: 100px;
 }
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-happy,
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-plain,
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-sad {
-  display: none;
+@media screen and (max-width: 360px) {
+  .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .tear {
+    right: 36px;
+    top: 66px;
+  }
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen {
   background-color: #F76565;
-  transition: background-color 2s ease-out;
-  transition-delay: 1s;
-}
-@keyframes unicorn {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(-160deg);
-  }
-}
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-sad {
-  display: inline-block;
-}
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-happy,
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-plain,
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-tear {
-  display: none;
-}
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-container {
-  animation: unicorn 0.5s linear forwards;
-  transform-origin: 55% 60%;
-}
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-container:before {
-  opacity: 1;
-  transition: opacity 0.1s;
+  transition: background-color 1s ease-out;
   transition-delay: 0.5s;
 }
-.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .attempts:before {
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-container {
+  animation: unicorn 0.8s ease-out forwards;
+  transform-origin: 55% 60%;
+}
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-container .eye {
+  background: url('eye-dead.png') left center;
+  background-size: 100%;
+}
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .unicorn-container .tear {
   opacity: 0;
-  transition: opacity 1s ease-in;
+}
+.letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .attempts:before {
+  opacity: 0;
+  transition: opacity 0.5s;
   transition-delay: 1s;
 }
 .letter-checkbox ~ .screen .end-win,
 .letter-checkbox ~ .screen .end-fail {
+  width: 25rem;
+  max-width: 250px;
+  font-size: 25px;
+  color: #750073;
+  display: inline-block;
+  text-align: center;
   opacity: 0;
+  background-color: #fff;
+  border: 4px solid #000;
+  border-radius: 35px;
+  padding: 20px 15px;
   position: absolute;
+  right: 0.5rem;
+  z-index: 50;
+}
+@media screen and (max-width: 600px) {
+  .letter-checkbox ~ .screen .end-win,
+  .letter-checkbox ~ .screen .end-fail {
+    font-size: 15px;
+    width: 200px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .letter-checkbox ~ .screen .end-win,
+  .letter-checkbox ~ .screen .end-fail {
+    width: 150px;
+    padding: 5px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .letter-checkbox ~ .screen .end-win {
+    left: 5px;
+    right: auto;
+  }
+}
+.twinkle {
+  background: url(twinkling.png);
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  animation: twinkle 0.75s steps(1) infinite alternate 0.15s;
+  opacity: 0;
+  z-index: 4;
+}
+.twinkle:before,
+.twinkle:after {
+  content: "";
+  background: url(twinkling.png);
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+.twinkle:before {
+  top: 5rem;
+  left: -2rem;
+  animation: twinkle 0.75s steps(1) infinite alternate 0.7s;
+}
+.twinkle:after {
+  top: 1rem;
+  left: 4rem;
+  animation: twinkle 0.75s steps(1) infinite alternate 0.45s;
+}
+.twinkle1 {
+  top: 5%;
+  right: 90%;
+}
+.twinkle2 {
+  top: 25%;
+  right: 80%;
+}
+.twinkle3 {
+  top: 50%;
+  right: 65%;
+}
+.twinkle4 {
+  top: 20%;
+  right: 50%;
+}
+.twinkle5 {
+  top: 45%;
+  right: 40%;
+}
+.twinkle6 {
+  top: 15%;
+  right: 25%;
+}
+.twinkle7 {
+  top: 45%;
+  right: 10%;
+}
+.heart {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  background-image: url(heart.png);
+  background-size: cover;
+  position: absolute;
+  right: calc(100% - 500px - 0.5rem);
+  top: 50%;
+  opacity: 0;
+  z-index: 51;
+}
+.heart:before,
+.heart:after {
+  content: "";
+  background-image: url(heart.png);
+  background-size: cover;
+  position: absolute;
+}
+.heart:before {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  top: 5rem;
+  right: -50%;
+}
+.heart:after {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  top: 2.5rem;
+  right: 130%;
+}
+@media screen and (max-width: 600px) {
+  .heart {
+    right: 10rem;
+  }
+  .heart:before {
+    top: 10rem;
+    right: -80%;
+  }
+  .heart:after {
+    top: 8.5rem;
+    right: 150%;
+  }
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .game .keyboard .letter-key {
   pointer-events: none;
@@ -334,16 +638,8 @@ body {
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .screen .end-fail {
   opacity: 1;
-  transition: opacity 0.5s ease-in;
+  transition: opacity 0.75s ease-in;
   transition-delay: 1s;
-}
-@keyframes fade {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .game .game-word .letter {
   color: rgba(255, 255, 255, 0.2);
@@ -352,18 +648,4 @@ body {
 }
 .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .letter-missed:checked ~ .game .game-word .letter:before {
   animation: fade 0.5s forwards ease-in;
-}
-.end {
-  position: absolute;
-  color: #750073;
-  right: 40px;
-  top: 40px;
-  width: 180px;
-  padding: 20px 15px;
-  display: inline-block;
-  text-align: center;
-  background-color: #fff;
-  border: 4px solid #000;
-  border-radius: 35px;
-  transform-origin: 50% 50%;
 }

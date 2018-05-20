@@ -32,8 +32,33 @@
       {{?letterIndex < it.numberOfLettersInWord}}.letter-correct:checked ~ {{?}}
     {{~}}
     .screen {
-      background-color: #67C3FC;
-      transition: background-color 1.5s ease-out;
+      background-color: #67C3FC!important;
+      transition: background-color 0.5s ease-out;
+      color: red;
+    }
+
+    {{~it.lettersInWord :letter:letterIndex}}
+      {{?letterIndex < it.numberOfLettersInWord}}.letter-correct:checked ~ {{?}}
+    {{~}}
+    .screen .eye {
+      background: url('eye-happy.png') left center;
+      background-size: 100%;
+      transition: background-image 0.2s ease-in-out;
+    }
+
+    {{~it.lettersInWord :letter:letterIndex}}
+      {{?letterIndex < it.numberOfLettersInWord}}.letter-correct:checked ~ {{?}}
+    {{~}}
+    .screen .tear {
+      opacity: 0;
+    }
+
+    {{~it.lettersInWord :letter:letterIndex}}
+      {{?letterIndex < it.numberOfLettersInWord}}.letter-correct:checked ~ {{?}}
+    {{~}}
+    .screen .corn {
+      opacity: 0;
+      animation: corn2 ease-in forwards !important;
     }
 
     {{~it.lettersInWord :letter:letterIndex}}
@@ -41,15 +66,39 @@
     {{~}}
     .screen .end-win {
       opacity: 1;
-      transition: opacity 0.5s ease-in;
+      transition: opacity 0.75s ease-in;
+      transition-delay: 1s;
     }
     {{~it.lettersInWord :letter:letterIndex}}
       {{?letterIndex < it.numberOfLettersInWord}}.letter-correct:checked ~ {{?}}
     {{~}}
-    .screen .unicorn-container:after {
+    .screen .twinkle {
       opacity: 1;
-      transition: opacity 0.5s ease-in;
-      transition-delay: 0.2s;
+      transition: opacity 0.75s ease-in;
+    }
+
+    {{~it.lettersInWord :letter:letterIndex}}
+      {{?letterIndex < it.numberOfLettersInWord}}.letter-correct:checked ~ {{?}}
+    {{~}}
+    .screen .heart {
+      opacity: 0;
+      animation: fadeInOut 5s linear forwards 0.9s;
+    }
+
+    {{~it.lettersInWord :letter:letterIndex}}
+      {{?letterIndex < it.numberOfLettersInWord}}.letter-correct:checked ~ {{?}}
+    {{~}}
+    .screen .heart:before {
+      opacity: 0;
+      animation: fadeInOut 5s linear forwards 0.6s;
+    }
+
+    {{~it.lettersInWord :letter:letterIndex}}
+      {{?letterIndex < it.numberOfLettersInWord}}.letter-correct:checked ~ {{?}}
+    {{~}}
+    .screen .heart:after {
+      opacity: 0;
+      animation: fadeInOut 5s linear forwards 0.3s;
     }
 
     {{~it.lettersInWord :letter:letterIndex}}
@@ -72,7 +121,8 @@
 </head>
 
 <body>
-  <div class="hangman">
+  <div class="hangman-container">
+    <div class="hangman">
 
       {{~it.lettersInWord :letter:letterIndex}}
         <input type="checkbox" id="{{=letter}}" class="letter-checkbox letter-correct letter-{{=letter}}" > <span>{{=letter}}{{?letterIndex < it.numberOfLettersInWord - 1}},{{?}} </span>
@@ -93,34 +143,44 @@
           {{~it.alphabet :letter:letterIndex}}
           <label for="{{=letter}}" class="{{?it.lettersInWord.includes(letter)}}good{{??}}bad{{?}} letter-key letter-{{=letter}}">{{=letter}}</label>
           {{~}}
-          <a href="." class="new-game">New game</a>>
+          <a href="." class="new-game">New game</a>
         </div>
 
       </div>
 
       <div class="screen">
 
-        <div class="attempts">
-          <span class="life life-6"></span>
-          <span class="life life-5"></span>
-          <span class="life life-4"></span>
-          <span class="life life-3"></span>
-          <span class="life life-2"></span>
-          <span class="life life-1"></span>
-        </div>
-
-        <div class="end end-win">You win! Your unicorn loves you.</div>
-        <div class="end end-fail">You lose... You're a unicorn killer.</div>
+        <div class="end-win">You win! Your unicorn loves you.</div>
+        <div class="end-fail">You lose... You're a unicorn killer.</div>
 
         <div class="unicorn-container">
-          <img class="unicorn unicorn-happy" src="unicorn-happy.png" />
-          <img class="unicorn unicorn-plain" src="unicorn.png" />
-          <img class="unicorn unicorn-sad" src="unicorn-sad.png" />
-          <img class="unicorn unicorn-tear" src="unicorn-tear.png" />
+          <div class="eye"></div>
+          <div class="tear"></div>
+          <div class="corn"></div>
+          <div class="rainbow"></div>
         </div>
+
+        <div class="twinkle twinkle1"></div>
+        <div class="twinkle twinkle2"></div>
+        <div class="twinkle twinkle3"></div>
+        <div class="twinkle twinkle4"></div>
+        <div class="twinkle twinkle5"></div>
+        <div class="twinkle twinkle6"></div>
+        <div class="twinkle twinkle7"></div>
+        <div class="heart"></div>
 
       </div>
 
+      <div class="attempts">
+        <span class="life life-6"></span>
+        <span class="life life-5"></span>
+        <span class="life life-4"></span>
+        <span class="life life-3"></span>
+        <span class="life life-2"></span>
+        <span class="life life-1"></span>
+      </div>
+
+    </div>
   </div>
 </body>
 </html>
